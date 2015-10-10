@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dsoframer", "dsoframer.vcproj", "{005801E1-A867-4CBB-995F-BA2EF4360BDF}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{005801E1-A867-4CBB-995F-BA2EF4360BDF}.Debug.ActiveCfg = Debug|Win32
+		{005801E1-A867-4CBB-995F-BA2EF4360BDF}.Debug.Build.0 = Debug|Win32
+		{005801E1-A867-4CBB-995F-BA2EF4360BDF}.Release.ActiveCfg = Release|Win32
+		{005801E1-A867-4CBB-995F-BA2EF4360BDF}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

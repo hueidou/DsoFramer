@@ -1,0 +1,154 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+#include "..\version.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// TYPELIB
+//
+#ifdef _DEBUG
+IDR_TYPELIB             TYPELIB DISCARDABLE     "..\\Debug\\dsoframer.tlb"
+#else
+IDR_TYPELIB             TYPELIB DISCARDABLE     "..\\Release\\dsoframer.tlb"
+#endif // _DEBUG
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION DSOFRAMERCTL_VERSION_MAJOR,DSOFRAMERCTL_VERSION_MINOR,DSOFRAMERCTL_VERSION_BUILD,0
+ PRODUCTVERSION DSOFRAMERCTL_VERSION_MAJOR,DSOFRAMERCTL_VERSION_MINOR,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "UNSUPPORTED BY MICROSOFT\0"
+            VALUE "CompanyName", "Your Company\0"
+            VALUE "FileDescription", "Your Company's Office Framer Control Sample\0"
+            VALUE "FileVersion", DSOFRAMERCTL_VERSIONSTRFULL "\0"
+            VALUE "OriginalFilename", "dsoframer.ocx\0"
+            VALUE "ProductName", "DSOFRAMER\0"
+            VALUE "ProductVersion", DSOFRAMERCTL_VERSIONSTR "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_TOOLBOX             BITMAP  DISCARDABLE     "toolbox.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_SMALLOFFDOC         ICON    DISCARDABLE     "dso.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    RES_DSO_E_UNKNOWN "An unknown problem has occurred."
+    RES_DSO_E_INVALIDPROGID "The ProgID/Template could not be found or is not associated with a COM server."
+    RES_DSO_E_INVALIDSERVER "The associated COM server does not support ActiveX Document embedding."
+    RES_DSO_E_COMMANDNOTSUPPORTED 
+                            "The command is not supported by the document server."
+    RES_DSO_E_DOCUMENTREADONLY 
+                            "Unable to perform action because document was opened in read-only mode."
+    RES_DSO_E_REQUIRESMSDAIPP 
+                            "The Microsoft Internet Publishing Provider is not installed, so the URL document cannot be open for write access."
+    RES_DSO_E_DOCUMENTNOTOPEN "No document is open to perform the operation requested."
+    RES_DSO_E_INMODALSTATE "Cannot access document when in modal condition."
+    RES_DSO_E_NOTBEENSAVED "Cannot Save file without a file path."
+    RES_DSO_E_FRAMEHOOKFAILED "Unable to set frame hook for the parent window."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

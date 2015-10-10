@@ -1,0 +1,281 @@
+/***************************************************************************
+ * DSOFRAMER.IDL  - DSO Framer ActiveX Control Type Library
+ *
+ *  Copyright ©1999-2004; Microsoft Corporation. All rights reserved.
+ *  Written by Microsoft Developer Support Office Integration (PSS DSOI)
+ * 
+ *  This code is provided via KB 311765 as a sample. It is not a formal
+ *  product and has not been tested with all containers or servers. Use it
+ *  for educational purposes only. See the EULA.TXT file included in the
+ *  KB download for full terms of use and restrictions.
+ *
+ *  THIS CODE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, 
+ *  EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+ *  WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ ***************************************************************************/
+/***************************************************************************
+ *
+ *  IMPORTANT: You should not attempt to modify this library unless you are
+ *  sure you do not break binary compatibility, or you change all the GUIDs
+ *  listed in version.h so as to build a completely new control.
+ *
+ ***************************************************************************/
+#include <olectl.h>
+#include "..\version.h"
+
+[
+	uuid(DSOFRAMERCTL_TLIB), helpstring(DSOFRAMERCTL_FULLNAME),
+	version(DSOFRAMERCTL_VERSION), lcid(0x0000), control
+]
+library DSOFramer
+{
+	importlib("STDOLE2.TLB");
+
+	typedef enum dsoBorderStyle
+	{
+		dsoBorderNone = 0,
+		dsoBorderFlat,
+		dsoBorder3D,
+		dsoBorder3DThin
+	} dsoBorderStyle;
+
+	typedef enum dsoShowDialogType
+	{
+		dsoDialogNew = 0,
+		dsoDialogOpen,
+		dsoDialogSave,
+		dsoDialogSaveCopy,
+		dsoDialogPrint,
+		dsoDialogPageSetup,
+		dsoDialogProperties
+	} dsoShowDialogType;
+
+	typedef enum dsoFileCommandType
+	{
+		dsoFileNew = 0,
+		dsoFileOpen,
+		dsoFileClose,
+		dsoFileSave,
+		dsoFileSaveAs,
+		dsoFilePrint,
+		dsoFilePageSetup,
+		dsoFileProperties,
+		dsoFilePrintPreview
+	} dsoFileCommandType;
+
+
+	[
+		uuid(DSOFRAMERCTL_INTERFACE), hidden, version(DSOFRAMERCTL_VERSION),
+		dual, oleautomation, odl
+	]
+	interface _FramerControl : IDispatch
+	{
+		[id(0x00010001), helpstring("Activates the current document object.")]
+		HRESULT Activate();
+
+		[propget, id(0x00010002), helpstring("Returns the Automation interface of the document object.")]
+		HRESULT ActiveDocument([out,retval] IDispatch** ppdisp);
+
+		[id(0x00010003), helpstring("Creates a new document based on the ProgId or Template file provided.")]
+		HRESULT CreateNew([in] BSTR ProgIdOrTemplate);
+
+		[id(0x00010004), helpstring("Opens a document from a file, URL, or Automation object.")]
+		HRESULT Open([in] VARIANT Document, [in, optional] VARIANT ReadOnly, [in, optional] VARIANT ProgId, [in, optional] VARIANT WebUsername, [in, optional] VARIANT WebPassword);
+
+		[id(0x00010005), helpstring("Saves the document to specified location or its original location.")]
+		HRESULT Save([in, optional] VARIANT SaveAsDocument, [in, optional] VARIANT OverwriteExisting, [in, optional] VARIANT WebUsername, [in, optional] VARIANT WebPassword);
+
+		[id(0x00010008), hidden]
+		HRESULT _PrintOutOld([in, optional] VARIANT PromptToSelectPrinter);
+
+		[id(0x00010009), helpstring("Closes the currently open document.")]
+		HRESULT Close();
+
+		[propput, id(0x0001000A), helpstring("Returns/sets the titlebar caption.")]
+		HRESULT Caption([in] BSTR bstr);
+		[propget, id(0x0001000A)]
+		HRESULT Caption([out,retval] BSTR* pbstr);
+
+		[propput, id(0x0001000B), helpstring("Returns/sets whether the titlebar should be displayed.")]
+		HRESULT Titlebar([in] VARIANT_BOOL vbool);
+		[propget, id(0x0001000B)]
+		HRESULT Titlebar([out,retval] VARIANT_BOOL* pbool);
+
+		[propput, id(0x0001000C), helpstring("Returns/sets whether toolbars should be displayed.")]
+		HRESULT Toolbars([in] VARIANT_BOOL vbool);
+		[propget, id(0x0001000C)]
+		HRESULT Toolbars([out,retval] VARIANT_BOOL* pbool);
+
+		[propput, nonbrowsable, id(0x0001000D), helpstring("Returns/sets the controls modal state.")]
+		HRESULT ModalState([in] VARIANT_BOOL vbool);
+		[propget, nonbrowsable, id(0x0001000D)]
+		HRESULT ModalState([out,retval] VARIANT_BOOL* pbool);
+
+		[id(0x0001000E), helpstring("Displays a modal dialog of the given type for user action.")]
+		HRESULT ShowDialog([in] dsoShowDialogType DlgType);
+
+		[propput, id(0x0001000F), helpstring("Returns/sets whether a specific action item is enabled.")]
+		HRESULT EnableFileCommand([in] dsoFileCommandType Item, [in] VARIANT_BOOL vbool);
+		[propget, id(0x0001000F)]
+		HRESULT EnableFileCommand([in] dsoFileCommandType Item, [out,retval] VARIANT_BOOL* pbool);
+
+		[propput, id(DISPID_BORDERSTYLE), helpstring("Returns/sets the border style for the control.")]
+		HRESULT BorderStyle([in] dsoBorderStyle style);
+		[propget, id(DISPID_BORDERSTYLE)]
+		HRESULT BorderStyle([out, retval] dsoBorderStyle* pstyle);
+
+		[propput, id(DISPID_BORDERCOLOR), helpstring("Returns/sets the border color of the control.")]
+		HRESULT BorderColor([in] OLE_COLOR clr);
+		[propget, id(DISPID_BORDERCOLOR)]
+		HRESULT BorderColor([out,retval] OLE_COLOR* pclr);
+
+		[propput, id(DISPID_BACKCOLOR), helpstring("Returns/sets the background color of the control.")]
+		HRESULT BackColor([in] OLE_COLOR clr);
+		[propget, id(DISPID_BACKCOLOR)]
+		HRESULT BackColor([out,retval] OLE_COLOR* pclr);
+
+		[propput, id(DISPID_FORECOLOR), helpstring("Returns/sets the foreground color of the control.")]
+		HRESULT ForeColor([in]OLE_COLOR clr);
+		[propget, id(DISPID_FORECOLOR)]
+		HRESULT ForeColor([out,retval]OLE_COLOR* pclr);
+
+		[propput, id(0x00010010), helpstring("Returns/sets the color of the titlebar.")]
+		HRESULT TitlebarColor([in] OLE_COLOR clr);
+		[propget, id(0x00010010)]
+		HRESULT TitlebarColor([out,retval] OLE_COLOR* pclr);
+
+		[propput, id(0x00010011), helpstring("Returns/sets the color of text for the titlebar.")]
+		HRESULT TitlebarTextColor([in] OLE_COLOR clr);
+		[propget, id(0x00010011)]
+		HRESULT TitlebarTextColor([out,retval] OLE_COLOR* pclr);
+
+		[id(0x00010012), helpstring("Calls IOleCommandTarget::Exec on embedded object.")]
+		HRESULT ExecOleCommand([in] LONG OLECMDID, [in, optional] VARIANT Options, [in, optional] VARIANT* vInParam, [in, out, optional] VARIANT* vInOutParam);
+
+		[propput, id(0x00010013), helpstring("Returns/sets whether a menu bar should be displayed.")]
+		HRESULT Menubar([in] VARIANT_BOOL vbool);
+		[propget, id(0x00010013)]
+		HRESULT Menubar([out,retval] VARIANT_BOOL* pbool);
+
+		[propput, id(0x00010014), helpstring("Returns/sets host application name (used in embedding).")]
+		HRESULT HostName([in] BSTR bstr);
+		[propget, id(0x00010014)]
+		HRESULT HostName([out,retval] BSTR* pbstr);
+
+		[propget, id(0x00010015), helpstring("Returns full document path name for object.")]
+		HRESULT DocumentFullName([out,retval] BSTR* pbstr);
+
+		[id(0x00010016), helpstring("Prints current document to specific printer with settings.")]
+		HRESULT PrintOut([in, optional] VARIANT PromptUser, [in, optional] VARIANT PrinterName, [in, optional] VARIANT Copies,
+			 [in, optional] VARIANT FromPage, [in, optional] VARIANT ToPage, [in, optional] VARIANT OutputFile);
+
+		[id(0x00010017), helpstring("Starts a print preview (if document supports it).")]
+		HRESULT PrintPreview();
+		 
+		[id(0x00010018), helpstring("Exits a current print preview.")]
+		HRESULT PrintPreviewExit();
+
+		[propget, id(0x00010019), helpstring("Returns True/False if file was open read-only, or has not been saved.")]
+		HRESULT IsReadOnly([out,retval] VARIANT_BOOL* pbool);
+
+		[propget, id(0x0001001A), helpstring("Returns True/False if file has been altered or needs save.")]
+		HRESULT IsDirty([out,retval] VARIANT_BOOL* pbool);
+
+		[propput, id(0x0001001B), helpstring("Sets lock on the current embed server to keep it running (document must be open first).")]
+		HRESULT LockServer([in] VARIANT_BOOL vbool);
+		[propget, id(0x0001001B)]
+		HRESULT LockServer([out,retval] VARIANT_BOOL* pvbool);
+
+		[id(0x0001001C), nonbrowsable, helpstring("Gets the content of the body of the document (excluding headers/footers).")]
+		HRESULT GetDataObjectContent([in] VARIANT ClipFormatNameOrNumber, [out,retval] VARIANT *pvResults);
+		
+		[id(0x0001001D), nonbrowsable, helpstring("Sets the content of the body of the document.")]
+		HRESULT SetDataObjectContent([in] VARIANT ClipFormatNameOrNumber, [in] VARIANT DataByteArray);
+
+		[propput, id(0x0001001E), helpstring("Allows host to set policy on activation behavior.")]
+		HRESULT ActivationPolicy([in] enum dsoActivationPolicy lPolicy);
+		[propget, id(0x0001001E)]
+		HRESULT ActivationPolicy([out,retval] enum dsoActivationPolicy *plPolicy);
+
+		[propput, id(0x0001001F), helpstring("Allows host to set policy on use of the frame hook.")]
+		HRESULT FrameHookPolicy([in] enum dsoFrameHookPolicy lPolicy);
+		[propget, id(0x0001001F)]
+		HRESULT FrameHookPolicy([out,retval] enum dsoFrameHookPolicy *plPolicy);
+
+		[propput, id(0x00010020), helpstring("Gets/sets whether control should try to handle menu accelerators or pass to host window.")]
+		HRESULT MenuAccelerators([in] VARIANT_BOOL vbool);
+		[propget, id(0x00010020)]
+		HRESULT MenuAccelerators([out,retval] VARIANT_BOOL* pvbool);
+
+		[propput, nonbrowsable, id(0x00010021), helpstring("Gets/sets whether control events are raised.")]
+		HRESULT EventsEnabled([in] VARIANT_BOOL vbool);
+		[propget, nonbrowsable, id(0x00010021)]
+		HRESULT EventsEnabled([out,retval] VARIANT_BOOL* pvbool);
+
+		[propget, id(0x00010022), helpstring("Returns just the document name (excluding path).")]
+		HRESULT DocumentName([out,retval] BSTR* pbstr);
+	};
+
+	[
+		uuid(DSOFRAMERCTL_DISPEVTS), hidden
+	]
+	dispinterface _DFramerCtlEvents
+	{
+		properties:
+		methods:
+		[id(DSOF_DISPID_FILECMD), helpstring("Called when File menu item is selected by user (may be canceled).")]
+		HRESULT OnFileCommand([in] dsoFileCommandType Item, [in,out] VARIANT_BOOL* Cancel);
+
+		[id(DSOF_DISPID_DOCOPEN), helpstring("Called when document is opened or new document added.")]
+		HRESULT OnDocumentOpened([in] BSTR File, [in] IDispatch* Document);
+
+		[id(DSOF_DISPID_DOCCLOSE), helpstring("Called when document is closed.")]
+		HRESULT OnDocumentClosed();
+
+		[id(DSOF_DISPID_ACTIVATE), helpstring("Called when component gains/loses activation.")]
+		HRESULT OnActivationChange([in] VARIANT_BOOL fGoingActive);
+
+		[id(DSOF_DISPID_BDOCCLOSE), helpstring("Called before document is closed (may be canceled).")]
+		HRESULT BeforeDocumentClosed([in] IDispatch* Document, [in,out] VARIANT_BOOL* Cancel);
+
+		[id(DSOF_DISPID_BDOCSAVE), helpstring("Called before document is saved (may be canceled).")]
+		HRESULT BeforeDocumentSaved([in] IDispatch* Document, [in] BSTR Location, [in,out] VARIANT_BOOL* Cancel);
+		
+		[id(DSOF_DISPID_ENDPREVIEW), helpstring("Called when print preview is closed.")]
+		HRESULT OnPrintPreviewExit();
+
+		[id(DSOF_DISPID_SAVECOMPLETE), helpstring("Called when save is successful.")]
+		HRESULT OnSaveCompleted([in] IDispatch* Document, [in] BSTR DocName, [in] BSTR FullFileLocation);
+
+	};
+
+	[
+		uuid(DSOFRAMERCTL_CLSID),
+		helpstring(DSOFRAMERCTL_SHORTNAME), control
+	]
+	coclass FramerControl
+	{
+		[default] interface _FramerControl;
+		[default, source] dispinterface _DFramerCtlEvents;
+	};
+
+
+	typedef enum dsoFrameHookPolicy
+	{
+		dsoNormalBehavior = 0,
+		dsoSetOnFirstOpen,
+		dsoResetNow,
+		dsoDisableHook = 0xFFFFFFFF
+	} dsoFrameHookPolicy;
+
+	typedef enum dsoActivationPolicy
+	{
+		dsoDefaultBehavior = 0,
+		dsoKeepUIActiveOnAppDeactive  = 0x01,
+		dsoCompDeactivateOnLostFocus  = 0x02,
+		dsoIPDeactivateOnCompDeactive = 0x04
+	} dsoActivationPolicy;
+
+};
+
